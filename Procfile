@@ -1,0 +1,1 @@
+web: gunicorn smart_queue.wsgi --log-file -
