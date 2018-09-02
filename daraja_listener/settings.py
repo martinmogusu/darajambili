@@ -131,10 +131,6 @@ LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
     'formatters': {
-        #  'verbose': {
-        #     'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
-        #     'style': '{',
-        # },
          'verbose': {
             'format': ('%(asctime)s [%(process)d] [%(levelname)s] ' +
                        'pathname=%(pathname)s lineno=%(lineno)s ' +
@@ -149,11 +145,11 @@ LOGGING = {
     'handlers': {
         'file': {
             'level': 'INFO',
-            'class': 'logging.FileHandler',
+            'class': 'logging.handlers.RotatingFileHandler',
             'filename': os.path.join(BASE_DIR, 'daraja.log'),
-            'formatter': 'simple'
-            # 'maxBytes': 1024*1024*15, # 15MB
-            # 'backupCount': 10,
+            'formatter': 'simple',
+            'maxBytes': 1024*1024*15, # 15MB
+            'backupCount': 10,
         },
         'console': {
             'level': 'DEBUG',
