@@ -1,1 +1,1 @@
-web: gunicorn smart_queue.wsgi --log-file -
+web: gunicorn daraja_listener.wsgi --log-file -
