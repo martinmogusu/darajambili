@@ -4,6 +4,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
 import logging
 import os
+import json
 
 # Get logger instance
 logger = logging.getLogger('daraja')
@@ -29,18 +30,22 @@ def view_logs(request):
 	'''
 
 	logs_path = os.path.join(settings.BASE_DIR, 'daraja.log')
+	logs = {}
 	with open(logs_path, 'r') as file:
-		logs = file.read()
+		for line in file.readlines():
+			timestamp = line[:23]
+			message = line[24:]
+			try:
+				json_message = json.loads(message)
+			except Exception as e:
+				json_message = message.replace('\n', '')
+			logs[timestamp] = json_message
 	
-	# Format logs
-	logs = logs.replace('\n', '<br>')
-	logs = logs.replace('\\n', '<br>')
-
-	return HttpResponse(logs)
+	return JsonResponse(logs, safe=False)
 
 @csrf_exempt
 def c2b_validation(request):
-	data = {'body': request.body.decode()}
+	data = request.body.decode().replace('\n', ' ')
 	message = 'C2B Validation request'
 	
 	logger.info(message)
@@ -55,7 +60,7 @@ def c2b_validation(request):
 
 @csrf_exempt
 def c2b_confirmation(request):
-	data = {'body': request.body.decode()}
+	data = request.body.decode().replace('\n', ' ')
 	message = 'C2B Confirmation request'
 	
 	logger.info(message)
@@ -70,7 +75,7 @@ def c2b_confirmation(request):
 
 @csrf_exempt
 def b2b_result(request):
-	data = {'body': request.body.decode()}
+	data = request.body.decode().replace('\n', ' ')
 	message = 'B2B Payment Result'
 	
 	logger.info(message)
@@ -80,7 +85,7 @@ def b2b_result(request):
 
 @csrf_exempt
 def b2b_timeout(request):
-	data = {'body': request.body.decode()}
+	data = request.body.decode().replace('\n', ' ')
 	message = 'B2B Payment Timeout'
 	
 	logger.info(message)
@@ -90,7 +95,7 @@ def b2b_timeout(request):
 
 @csrf_exempt
 def express_payment(request):
-	data = {'body': request.body.decode()}
+	data = request.body.decode().replace('\n', ' ')
 	message = 'MPESA Express payment result'
 	
 	logger.info(message)
@@ -100,7 +105,7 @@ def express_payment(request):
 
 @csrf_exempt
 def b2c_result(request):
-	data = {'body': request.body.decode()}
+	data = request.body.decode().replace('\n', ' ')
 	message = 'B2C Payment Result'
 	
 	logger.info(message)
@@ -110,7 +115,7 @@ def b2c_result(request):
 
 @csrf_exempt
 def b2c_timeout(request):
-	data = {'body': request.body.decode()}
+	data = request.body.decode().replace('\n', ' ')
 	message = 'B2C Payment Timeout'
 	
 	logger.info(message)
@@ -120,7 +125,7 @@ def b2c_timeout(request):
 
 @csrf_exempt
 def account_balance_result(request):
-	data = {'body': request.body.decode()}
+	data = request.body.decode().replace('\n', ' ')
 	message = 'Account Balance result'
 	
 	logger.info(message)
@@ -130,7 +135,7 @@ def account_balance_result(request):
 
 @csrf_exempt
 def account_balance_timeout(request):
-	data = {'body': request.body.decode()}
+	data = request.body.decode().replace('\n', ' ')
 	message = 'Account Balance timeout'
 	
 	logger.info(message)
@@ -140,7 +145,7 @@ def account_balance_timeout(request):
 
 @csrf_exempt
 def transaction_status_result(request):
-	data = {'body': request.body.decode()}
+	data = request.body.decode().replace('\n', ' ')
 	message = 'Transaction Status result'
 	
 	logger.info(message)
@@ -150,7 +155,7 @@ def transaction_status_result(request):
 
 @csrf_exempt
 def transaction_status_timeout(request):
-	data = {'body': request.body.decode()}
+	data = request.body.decode().replace('\n', ' ')
 	message = 'Transaction Status timeout'
 	
 	logger.info(message)
@@ -160,7 +165,7 @@ def transaction_status_timeout(request):
 
 @csrf_exempt
 def reversal_result(request):
-	data = {'body': request.body.decode()}
+	data = request.body.decode().replace('\n', ' ')
 	message = 'Reversal result'
 	
 	logger.info(message)
@@ -170,7 +175,7 @@ def reversal_result(request):
 
 @csrf_exempt
 def reversal_timeout(request):
-	data = {'body': request.body.decode()}
+	data = request.body.decode().replace('\n', ' ')
 	message = 'Reversal timeout'
 	
 	logger.info(message)
