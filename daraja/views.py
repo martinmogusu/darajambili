@@ -9,7 +9,8 @@ import os
 logger = logging.getLogger('daraja')
 
 def index(request):
-	return HttpResponse('Daraja listener')
+	page_context = {}
+	return render(request, 'index.html', context=page_context)
 
 def clear_logs(request):
 	'''
@@ -26,7 +27,7 @@ def view_logs(request):
 	'''
 	View application logs
 	'''
-	
+
 	logs_path = os.path.join(settings.BASE_DIR, 'daraja.log')
 	with open(logs_path, 'r') as file:
 		logs = file.read()
@@ -40,14 +41,14 @@ def view_logs(request):
 @csrf_exempt
 def c2b_validation(request):
 	data = {'body': request.body.decode()}
-	message = 'Validation request'
+	message = 'C2B Validation request'
 	
 	logger.info(message)
 	logger.info(data)
 
 	response = {
 		'ResultCode': 0,
-		'ResultDesc': 'Validation Accepted'
+		'ResultDesc': 'Accepted'
 	}
 
 	return JsonResponse(response)
@@ -55,7 +56,7 @@ def c2b_validation(request):
 @csrf_exempt
 def c2b_confirmation(request):
 	data = {'body': request.body.decode()}
-	message = 'Confirmation request'
+	message = 'C2B Confirmation request'
 	
 	logger.info(message)
 	logger.info(data)
