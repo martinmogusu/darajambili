@@ -37,14 +37,40 @@
 		    border-radius: 3px;
 		}
 
+		.button {
+			/*font-weight: bold;*/
+			text-decoration: none;
+			color: #fff;
+			background-color: #7c7c7c;
+			padding: 5px;
+			border-radius: 3px;
+			border-color: #4f4f4f;
+			margin-right: 5px;
+		}
+
+		.button:hover {
+			background-color: #5e5e5e;
+		}
+
+		.danger{
+			background-color: #e53935;
+		}
+
+		.danger:hover{
+			background: #b71c1c;
+		}
+
 	</style>
 </head>
 <body>
 	<div class="markdown-body">
-		<h1 id="darajambili">Darajambili</h1>
+		<center>
+			<h1 id="darajambili">Darajambili</h1>
+			<hr>
+		</center>
 
 		<p>Safaricom Daraja API listener.
-		Documentation for daraja can be found at <a href="https://developer.safaricom.co.ke">https://developer.safaricom.co.ke</a></p>
+		Documentation for daraja can be found at <a href="https://developer.safaricom.co.ke" target="_blank">https://developer.safaricom.co.ke</a></p>
 
 		<p>Base url: <code>https://darajambili.herokuapp.com</code></p>
 
@@ -102,15 +128,17 @@
 
 		<p>Path: <code>reversal/timeout</code></p>
 
-		<h2 id="logsendpoints">Logs endpoints</h2>
+		<h2 id="logsendpoints">Logs</h2>
 
-		<h4 id="viewlogs">View Logs</h4>
 
-		<p>Path: <code>logs/view</code></p>
+		<div style="margin-bottom: 50px;">
 
-		<h4 id="clearlogs">Clear logs</h4>
+		<p><a class="button" href="{% url 'view_logs' %}" title="View Logs">View logs</a>
 
-		<p>Path: <code>logs/clear</code></p>
+		<a class="button danger" href="{% url 'clear_logs' %}" title="Clear Logs">Clear logs</a></p>
+
+		</div>
+
 	</div>
 </body>
 </html>

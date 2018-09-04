@@ -5,6 +5,7 @@ from django.conf import settings
 import logging
 import os
 import json
+from django.urls import reverse
 
 # Get logger instance
 logger = logging.getLogger('daraja')
@@ -22,7 +23,10 @@ def clear_logs(request):
 	with open(logs_path, 'w'):
 		pass
 	
-	return HttpResponse('Logs cleared')
+	home_url = reverse('index')
+	response = '<p>Logs cleared.</p> <a href="' + home_url + '">Back Home</a>'
+
+	return HttpResponse(response)
 
 def view_logs(request):
 	'''
