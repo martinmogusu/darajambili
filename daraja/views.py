@@ -61,8 +61,8 @@ def c2b_validation(request):
 	logger.info(message)
 
 	response = {
-		'ResultCode': 1,
-		'ResultDesc': 'Rejected'
+		'ResultCode': 0,
+		'ResultDesc': 'Accepted'
 	}
 
 	return JsonResponse(response)
