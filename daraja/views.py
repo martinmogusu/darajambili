@@ -45,6 +45,11 @@ def view_logs(request):
 				json_message = message.replace('\n', '')
 			logs[timestamp] = json_message
 	
+	# View newest logs first
+	log_items = list(logs.items())
+	log_items.reverse()
+	logs = dict(log_items)
+	
 	return JsonResponse(logs, safe=False)
 
 @csrf_exempt
