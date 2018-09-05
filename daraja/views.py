@@ -57,8 +57,8 @@ def c2b_validation(request):
 	data = request.body.decode().replace('\n', ' ')
 	message = 'C2B Validation request'
 	
-	logger.info(message)
 	logger.info(data)
+	logger.info(message)
 
 	response = {
 		'ResultCode': 0,
@@ -72,8 +72,8 @@ def c2b_confirmation(request):
 	data = request.body.decode().replace('\n', ' ')
 	message = 'C2B Confirmation request'
 	
-	logger.info(message)
 	logger.info(data)
+	logger.info(message)
 	
 	response = {
 		'ResultCode': 0,
@@ -87,8 +87,8 @@ def b2b_result(request):
 	data = request.body.decode().replace('\n', ' ')
 	message = 'B2B Payment Result'
 	
-	logger.info(message)
 	logger.info(data)
+	logger.info(message)
 
 	return HttpResponse(message)
 
@@ -97,8 +97,8 @@ def b2b_timeout(request):
 	data = request.body.decode().replace('\n', ' ')
 	message = 'B2B Payment Timeout'
 	
-	logger.info(message)
 	logger.info(data)
+	logger.info(message)
 
 	return HttpResponse(message)
 
@@ -107,8 +107,8 @@ def express_payment(request):
 	data = request.body.decode().replace('\n', ' ')
 	message = 'MPESA Express payment result'
 	
-	logger.info(message)
 	logger.info(data)
+	logger.info(message)
 
 	return HttpResponse(message)
 
@@ -117,8 +117,8 @@ def b2c_result(request):
 	data = request.body.decode().replace('\n', ' ')
 	message = 'B2C Payment Result'
 	
-	logger.info(message)
 	logger.info(data)
+	logger.info(message)
 
 	return HttpResponse(message)
 
@@ -127,8 +127,8 @@ def b2c_timeout(request):
 	data = request.body.decode().replace('\n', ' ')
 	message = 'B2C Payment Timeout'
 	
-	logger.info(message)
 	logger.info(data)
+	logger.info(message)
 
 	return HttpResponse(message)
 
@@ -137,8 +137,8 @@ def account_balance_result(request):
 	data = request.body.decode().replace('\n', ' ')
 	message = 'Account Balance result'
 	
-	logger.info(message)
 	logger.info(data)
+	logger.info(message)
 
 	return HttpResponse(message)
 
@@ -147,8 +147,8 @@ def account_balance_timeout(request):
 	data = request.body.decode().replace('\n', ' ')
 	message = 'Account Balance timeout'
 	
-	logger.info(message)
 	logger.info(data)
+	logger.info(message)
 
 	return HttpResponse(message)
 
@@ -157,8 +157,8 @@ def transaction_status_result(request):
 	data = request.body.decode().replace('\n', ' ')
 	message = 'Transaction Status result'
 	
-	logger.info(message)
 	logger.info(data)
+	logger.info(message)
 
 	return HttpResponse(message)
 
@@ -167,8 +167,8 @@ def transaction_status_timeout(request):
 	data = request.body.decode().replace('\n', ' ')
 	message = 'Transaction Status timeout'
 	
-	logger.info(message)
 	logger.info(data)
+	logger.info(message)
 
 	return HttpResponse(message)
 
@@ -177,8 +177,8 @@ def reversal_result(request):
 	data = request.body.decode().replace('\n', ' ')
 	message = 'Reversal result'
 	
-	logger.info(message)
 	logger.info(data)
+	logger.info(message)
 
 	return HttpResponse(message)
 
@@ -187,7 +187,7 @@ def reversal_timeout(request):
 	data = request.body.decode().replace('\n', ' ')
 	message = 'Reversal timeout'
 	
-	logger.info(message)
 	logger.info(data)
+	logger.info(message)
 
 	return HttpResponse(message)
