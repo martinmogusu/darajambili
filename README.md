@@ -1,8 +1,8 @@
 # darajambili
 Safaricom Daraja API listener.
-Documentation for daraja can be found at [https://developer.safaricom.co.ke](https://developer.safaricom.co.ke)
+Documentation for daraja can be found at [https://developer.safaricom.co.ke](https://developer.safaricom.co.ke). This project can be viewed at [https://darajambili.herokuapp.com](https://darajambili.herokuapp.com).
 
-Base url: `https://darajambili.herokuapp.com`
+API Base url: `https://darajambili.herokuapp.com`
 
 ## API Endpoints
 
