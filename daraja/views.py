@@ -6,6 +6,7 @@ import logging
 import os
 import json
 from django.urls import reverse
+from .models import Log
 
 # Get logger instance
 logger = logging.getLogger('daraja')
@@ -19,10 +20,12 @@ def clear_logs(request):
 	Clear application logs
 	'''
 
-	logs_path = os.path.join(settings.BASE_DIR, 'daraja.log')
-	with open(logs_path, 'w'):
-		pass
+	# logs_path = os.path.join(settings.BASE_DIR, 'daraja.log')
+	# with open(logs_path, 'w'):
+	# 	pass
 	
+	Log.objects.all().delete()
+
 	home_url = reverse('index')
 	response = '<p>Logs cleared.</p> <a href="' + home_url + '">Back Home</a>'
 
@@ -33,22 +36,25 @@ def view_logs(request):
 	View application logs
 	'''
 
-	logs_path = os.path.join(settings.BASE_DIR, 'daraja.log')
-	logs = {}
-	with open(logs_path, 'r') as file:
-		for line in file.readlines():
-			timestamp = line[:23]
-			message = line[24:]
-			try:
-				json_message = json.loads(message)
-			except Exception as e:
-				json_message = message.replace('\n', '')
-			logs[timestamp] = json_message
+	# logs_path = os.path.join(settings.BASE_DIR, 'daraja.log')
+	# logs = {}
+	# with open(logs_path, 'r') as file:
+	# 	for line in file.readlines():
+	# 		timestamp = line[:23]
+	# 		message = line[24:]
+	# 		try:
+	# 			json_message = json.loads(message)
+	# 		except Exception as e:
+	# 			json_message = message.replace('\n', '')
+	# 		logs[timestamp] = json_message
 	
-	# View newest logs first
-	log_items = list(logs.items())
-	log_items.reverse()
-	logs = dict(log_items)
+	# # View newest logs first
+	# log_items = list(logs.items())
+	# log_items.reverse()
+	# logs = dict(log_items)
+
+	log_items = Log.objects.all()
+	logs = [{str(log.date_created): {'title': log.title, 'description': json.loads(log.description)}} for log in log_items]
 	
 	return JsonResponse(logs, safe=False)
 
@@ -59,6 +65,11 @@ def c2b_validation(request):
 	
 	logger.info(data)
 	logger.info(message)
+
+	Log.objects.create(
+		title=message,
+		description = data
+	)
 
 	response = {
 		'ResultCode': 0,
@@ -74,6 +85,11 @@ def c2b_confirmation(request):
 	
 	logger.info(data)
 	logger.info(message)
+
+	Log.objects.create(
+		title=message,
+		description = data
+	)
 	
 	response = {
 		'ResultCode': 0,
@@ -90,6 +106,11 @@ def b2b_result(request):
 	logger.info(data)
 	logger.info(message)
 
+	Log.objects.create(
+		title=message,
+		description = data
+	)
+
 	return HttpResponse(message)
 
 @csrf_exempt
@@ -99,6 +120,11 @@ def b2b_timeout(request):
 	
 	logger.info(data)
 	logger.info(message)
+
+	Log.objects.create(
+		title=message,
+		description = data
+	)
 
 	return HttpResponse(message)
 
@@ -110,6 +136,11 @@ def express_payment(request):
 	logger.info(data)
 	logger.info(message)
 
+	Log.objects.create(
+		title=message,
+		description = data
+	)
+
 	return HttpResponse(message)
 
 @csrf_exempt
@@ -119,6 +150,11 @@ def b2c_result(request):
 	
 	logger.info(data)
 	logger.info(message)
+
+	Log.objects.create(
+		title=message,
+		description = data
+	)
 
 	return HttpResponse(message)
 
@@ -130,6 +166,11 @@ def b2c_timeout(request):
 	logger.info(data)
 	logger.info(message)
 
+	Log.objects.create(
+		title=message,
+		description = data
+	)
+
 	return HttpResponse(message)
 
 @csrf_exempt
@@ -139,6 +180,11 @@ def account_balance_result(request):
 	
 	logger.info(data)
 	logger.info(message)
+
+	Log.objects.create(
+		title=message,
+		description = data
+	)
 
 	return HttpResponse(message)
 
@@ -150,6 +196,11 @@ def account_balance_timeout(request):
 	logger.info(data)
 	logger.info(message)
 
+	Log.objects.create(
+		title=message,
+		description = data
+	)
+
 	return HttpResponse(message)
 
 @csrf_exempt
@@ -159,6 +210,11 @@ def transaction_status_result(request):
 	
 	logger.info(data)
 	logger.info(message)
+
+	Log.objects.create(
+		title=message,
+		description = data
+	)
 
 	return HttpResponse(message)
 
@@ -170,6 +226,11 @@ def transaction_status_timeout(request):
 	logger.info(data)
 	logger.info(message)
 
+	Log.objects.create(
+		title=message,
+		description = data
+	)
+
 	return HttpResponse(message)
 
 @csrf_exempt
@@ -180,6 +241,11 @@ def reversal_result(request):
 	logger.info(data)
 	logger.info(message)
 
+	Log.objects.create(
+		title=message,
+		description = data
+	)
+
 	return HttpResponse(message)
 
 @csrf_exempt
@@ -189,5 +255,10 @@ def reversal_timeout(request):
 	
 	logger.info(data)
 	logger.info(message)
+
+	Log.objects.create(
+		title=message,
+		description = data
+	)
 
 	return HttpResponse(message)
