@@ -53,9 +53,20 @@ def view_logs(request):
 	# log_items.reverse()
 	# logs = dict(log_items)
 
-	log_items = Log.objects.all()
-	logs = [{str(log.date_created): {'title': log.title, 'description': json.loads(log.description)}} for log in log_items]
-	
+	# Select 50 most recent logs
+	log_items = Log.objects.all()[:50]
+
+	logs = []
+	for log in log_items:
+		description = '{}' if log.description == "" else log.description
+		description = json.loads(description)
+		
+		l = {
+			'title': log.title,
+			'description': description
+		}
+		logs.append(l)
+
 	return JsonResponse(logs, safe=False)
 
 @csrf_exempt

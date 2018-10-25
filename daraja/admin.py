@@ -6,5 +6,6 @@ from .models import Log
 @admin.register(Log)
 class LogAdmin(admin.ModelAdmin):
 	list_display = ('date_created', 'title', 'description')
-	date_hierachy = 'date_created'
+	date_hierarchy = 'date_created'
 	ordering = ['-date_created']
+	list_filter = ['date_created', 'title']
