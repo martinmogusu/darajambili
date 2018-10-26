@@ -12,7 +12,11 @@ from .models import Log
 logger = logging.getLogger('daraja')
 
 def index(request):
-	page_context = {}
+	logs = Log.objects.all()[:50]
+	page_context = {
+		'logs': logs
+	}
+
 	return render(request, 'index.html', context=page_context)
 
 def clear_logs(request):

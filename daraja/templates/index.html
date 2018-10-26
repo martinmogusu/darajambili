@@ -1,144 +1,147 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Daraja Listener</title>
-	<style>
-		body {
-			font-family: Helvetica;
-			font-size: 18px;
-		}
-		.markdown-body h1, .markdown-body h2, .markdown-body h3, .markdown-body h4, .markdown-body h5, .markdown-body h6 {
-		    margin-top: 24px;
-		    margin-bottom: 16px;
-		    font-weight: 600;
-		    line-height: 1.25;
-		}
+{% extends "base.html" %}
 
-		.markdown-body h2 {
-		    padding-bottom: 0.3em;
-		    font-size: 1.5em;
-		    border-bottom: 1px solid #eaecef;
-		}
+{% block content %}
 
-		.markdown-body h4 {
-		    font-size: 1em;
-		}
+<div>
 
-		.markdown-body p, .markdown-body blockquote, .markdown-body ul, .markdown-body ol, .markdown-body dl, .markdown-body table {
-		    margin-top: 0;
-		    margin-bottom: 16px;
-		}
+	<div>
+		<ul class="nav nav-tabs">
+			<li class="nav-item active">
+				<a href="#tab1" data-toggle="tab" class="nav-link active">Usage</a>
+			</li>
+			<li class="nav-item">
+				<a href="#tab2" data-toggle="tab" class="nav-link">Logs</a>
+			</li>
+		</ul>
 
-		.markdown-body code, .markdown-body tt {
-		    padding: 0.2em 0.4em;
-		    margin: 0;
-		    font-size: 85%;
-		    background-color: rgba(27,31,35,0.05);
-		    border-radius: 3px;
-		}
+		<div class="tab-content">
 
-		.button {
-			/*font-weight: bold;*/
-			text-decoration: none;
-			color: #fff;
-			background-color: #7c7c7c;
-			padding: 5px;
-			border-radius: 3px;
-			border-color: #4f4f4f;
-			margin-right: 5px;
-		}
+			<!-- First tab -->
+			<div class="tab-pane fade active show" id="tab1">
+				<div class="markdown-body">
+					<!-- <center> -->
+						<h1 id="darajambili">Darajambili</h1>
+						<hr>
+						<!-- </center> -->
 
-		.button:hover {
-			background-color: #5e5e5e;
-		}
+						<p>This is a listener for the Safaricom Daraja MPESA API.
+							Documentation for daraja can be found at <a href="https://developer.safaricom.co.ke" target="_blank">https://developer.safaricom.co.ke</a></p>
 
-		.danger{
-			background-color: #e53935;
-		}
+							<p>Base url: <code>https://darajambili.herokuapp.com</code></p>
 
-		.danger:hover{
-			background: #b71c1c;
-		}
+							<h2 id="apiendpoints">API Endpoints</h2>
 
-	</style>
-</head>
-<body>
-	<div class="markdown-body">
-		<center>
-			<h1 id="darajambili">Darajambili</h1>
-			<hr>
-		</center>
+							<h4 id="c2bvalidation">C2B Validation</h4>
 
-		<p>Safaricom Daraja API listener.
-		Documentation for daraja can be found at <a href="https://developer.safaricom.co.ke" target="_blank">https://developer.safaricom.co.ke</a></p>
+							<p>Path: <code>c2b/validation</code></p>
 
-		<p>Base url: <code>https://darajambili.herokuapp.com</code></p>
+							<h4 id="c2bconfirmation">C2B Confirmation</h4>
 
-		<h2 id="apiendpoints">API Endpoints</h2>
+							<p>Path: <code>c2b/confirmation</code></p>
 
-		<h4 id="c2bvalidation">C2B Validation</h4>
+							<h4 id="mpesaexpresspaymentresult">MPESA Express Payment Result</h4>
 
-		<p>Path: <code>c2b/validation</code></p>
+							<p>Path: <code>express-payment</code></p>
 
-		<h4 id="c2bconfirmation">C2B Confirmation</h4>
+							<h4 id="b2bresult">B2B Result</h4>
 
-		<p>Path: <code>c2b/confirmation</code></p>
+							<p>Path: <code>b2b/result</code></p>
 
-		<h4 id="mpesaexpresspaymentresult">MPESA Express Payment Result</h4>
+							<h4 id="b2btimeout">B2B Timeout</h4>
 
-		<p>Path: <code>express-payment</code></p>
+							<p>Path: <code>b2b/timeout</code></p>
 
-		<h4 id="b2bresult">B2B Result</h4>
+							<h4 id="b2cresult">B2C Result</h4>
 
-		<p>Path: <code>b2b/result</code></p>
+							<p>Path: <code>b2c/result</code></p>
 
-		<h4 id="b2btimeout">B2B Timeout</h4>
+							<h4 id="b2ctimeout">B2C Timeout</h4>
 
-		<p>Path: <code>b2b/timeout</code></p>
+							<p>Path: <code>b2c/timeout</code></p>
 
-		<h4 id="b2cresult">B2C Result</h4>
+							<h4 id="accountbalanceresult">Account Balance Result</h4>
 
-		<p>Path: <code>b2c/result</code></p>
+							<p>Path: <code>account-balance/result</code></p>
 
-		<h4 id="b2ctimeout">B2C Timeout</h4>
+							<h4 id="accountbalancetimeout">Account Balance Timeout</h4>
 
-		<p>Path: <code>b2c/timeout</code></p>
+							<p>Path: <code>account-balance/timeout</code></p>
 
-		<h4 id="accountbalanceresult">Account Balance Result</h4>
+							<h4 id="transactionstatusresult">Transaction Status Result</h4>
 
-		<p>Path: <code>account-balance/result</code></p>
+							<p>Path: <code>transaction-status/result</code></p>
 
-		<h4 id="accountbalancetimeout">Account Balance Timeout</h4>
+							<h4 id="transactionstatustimeout">Transaction Status Timeout</h4>
 
-		<p>Path: <code>account-balance/timeout</code></p>
+							<p>Path: <code>transaction-status/timeout</code></p>
 
-		<h4 id="transactionstatusresult">Transaction Status Result</h4>
+							<h4 id="reversalresult">Reversal Result</h4>
 
-		<p>Path: <code>transaction-status/result</code></p>
+							<p>Path: <code>reversal/result</code></p>
 
-		<h4 id="transactionstatustimeout">Transaction Status Timeout</h4>
+							<h4 id="reversaltimeout">Reversal Timeout</h4>
 
-		<p>Path: <code>transaction-status/timeout</code></p>
+							<p>Path: <code>reversal/timeout</code></p>
 
-		<h4 id="reversalresult">Reversal Result</h4>
+							<!-- <h2 id="logsendpoints">Logs</h2> -->
 
-		<p>Path: <code>reversal/result</code></p>
+<!-- 
+							<div style="margin-bottom: 50px;">
 
-		<h4 id="reversaltimeout">Reversal Timeout</h4>
+								<p><a target="_blank" class="button" href="{% url 'view_logs' %}" title="View Logs">View logs</a>
 
-		<p>Path: <code>reversal/timeout</code></p>
+									<a class="button danger" href="{% url 'clear_logs' %}" title="Clear Logs">Clear logs</a></p>
 
-		<h2 id="logsendpoints">Logs</h2>
+							</div> -->
+
+							</div>
+						</div>
+
+						<!-- Second tab -->
+						<div class="tab-pane fade" id="tab2">
+							<div class="card" style="margin-top: 10px;">
+								<div class="card-header">
+									<span>Daraja logs</span>
+									<span class="float-right">
+										<a target="_blank" class="btn btn-primary btn-sm" href="{% url 'view_logs' %}" title="View Logs">View as JSON</a>
+									</span>
+								</div>
+								<div class="card-body">
+									<table class="table table-striped table-responsive table-sm">
+										<thead>
+											<tr>
+												<th>Time</th>
+												<th>Title</th>
+												<th>Content</th>
+											</tr>
+										</thead>
+										<tbody>
+											{% for log in logs %}
+											<tr>
+												<td>{{ log.date_created }}</td>
+												<td>{{ log.title }}</td>
+												<td>{{ log.description }}</td>
+											</tr>
+											{% endfor %}
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
 
 
-		<div style="margin-bottom: 50px;">
+				</div>
 
-		<p><a target="_blank" class="button" href="{% url 'view_logs' %}" title="View Logs">View logs</a>
 
-		<a class="button danger" href="{% url 'clear_logs' %}" title="Clear Logs">Clear logs</a></p>
 
-		</div>
 
-	</div>
-</body>
-</html>
+			</div>
+
+
+
+
+
+
+
+			{% endblock %}
