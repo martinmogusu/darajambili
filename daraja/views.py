@@ -74,6 +74,26 @@ def view_logs(request):
 	return JsonResponse(logs, safe=False)
 
 @csrf_exempt
+def callback(request):
+	data = request.body.decode().replace('\n', ' ')
+	message = 'General callback'
+	
+	logger.info(data)
+	logger.info(message)
+
+	Log.objects.create(
+		title=message,
+		description = data
+	)
+
+	response = {
+		'ResultCode': 0,
+		'ResultDesc': 'Accepted'
+	}
+
+	return JsonResponse(response)
+
+@csrf_exempt
 def c2b_validation(request):
 	data = request.body.decode().replace('\n', ' ')
 	message = 'C2B Validation request'
