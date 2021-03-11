@@ -63,8 +63,11 @@ def view_logs(request):
 	logs = []
 	for log in log_items:
 		description = '{}' if log.description == "" else log.description
-		description = json.loads(description)
-		
+		try:
+			description = json.loads(description)
+		except (Exception):
+			pass
+
 		l = {
 			'title': log.title,
 			'description': description
