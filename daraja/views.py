@@ -69,6 +69,7 @@ def view_logs(request):
 			pass
 
 		l = {
+			'time': log.date_created,
 			'title': log.title,
 			'description': description
 		}
