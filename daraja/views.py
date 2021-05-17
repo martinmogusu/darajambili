@@ -23,10 +23,6 @@ def clear_logs(request):
 	'''
 	Clear application logs
 	'''
-
-	# logs_path = os.path.join(settings.BASE_DIR, 'daraja.log')
-	# with open(logs_path, 'w'):
-	# 	pass
 	
 	Log.objects.all().delete()
 
@@ -39,23 +35,6 @@ def view_logs(request):
 	'''
 	View application logs
 	'''
-
-	# logs_path = os.path.join(settings.BASE_DIR, 'daraja.log')
-	# logs = {}
-	# with open(logs_path, 'r') as file:
-	# 	for line in file.readlines():
-	# 		timestamp = line[:23]
-	# 		message = line[24:]
-	# 		try:
-	# 			json_message = json.loads(message)
-	# 		except Exception as e:
-	# 			json_message = message.replace('\n', '')
-	# 		logs[timestamp] = json_message
-	
-	# # View newest logs first
-	# log_items = list(logs.items())
-	# log_items.reverse()
-	# logs = dict(log_items)
 
 	# Select 50 most recent logs
 	log_items = Log.objects.all()[:50]
