@@ -48,8 +48,8 @@ def view_logs(request):
 
 		l = {
 			'time': log.date_created,
-			'title': log.title,
-			'description': description
+			'description': log.title,
+			'content': description
 		}
 		logs.append(l)
 
