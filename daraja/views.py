@@ -3,7 +3,6 @@ from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
 import logging
-import os
 import json
 from django.urls import reverse
 from .models import Log
