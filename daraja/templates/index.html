@@ -7,143 +7,145 @@
 	<div>
 		<ul class="nav nav-tabs">
 			<li class="nav-item active">
-				<a href="#tab1" data-toggle="tab" class="nav-link active">Usage</a>
+				<a href="#tab1" data-toggle="tab" class="nav-link active">Logs</a>
 			</li>
 			<li class="nav-item">
-				<a href="#tab2" data-toggle="tab" class="nav-link">Logs</a>
+				<a href="#tab2" data-toggle="tab" class="nav-link">Usage</a>
 			</li>
 		</ul>
 
 		<div class="tab-content">
 
-			<!-- First tab -->
+			<!-- Second tab -->
 			<div class="tab-pane fade active show" id="tab1">
+				<div class="card" style="margin-top: 10px;">
+					<div class="card-header">
+						<span>Daraja logs</span>
+						<span class="float-right">
+							<a target="_blank" class="btn btn-primary btn-sm" href="{% url 'view_logs' %}"
+								title="View Logs as JSON">View as JSON</a>
+						</span>
+					</div>
+					<div class="card-body">
+						<table class="table table-striped table-responsive table-sm">
+							<thead>
+								<tr>
+									<th>Time</th>
+									<th>Title</th>
+									<th>Content</th>
+								</tr>
+							</thead>
+							<tbody>
+								{% for log in logs %}
+								<tr>
+									<td>{{ log.date_created }}</td>
+									<td>{{ log.title }}</td>
+									<td>{{ log.description }}</td>
+								</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+
+			<!-- First tab -->
+			<div class="tab-pane fade" id="tab2">
 				<div class="markdown-body">
-					<!-- <center> -->
-						<h1 id="darajambili">Darajambili</h1>
-						<hr>
-						<!-- </center> -->
+					<h1 id="darajambili">Darajambili</h1>
+					<hr>
+					<p>This is a listener for the Safaricom Daraja MPESA API.
+						Documentation for daraja can be found at <a href="https://developer.safaricom.co.ke"
+							target="_blank">https://developer.safaricom.co.ke</a></p>
 
-						<p>This is a listener for the Safaricom Daraja MPESA API.
-							Documentation for daraja can be found at <a href="https://developer.safaricom.co.ke" target="_blank">https://developer.safaricom.co.ke</a></p>
+					<p>Base url: <code>https://darajambili.herokuapp.com</code></p>
 
-							<p>Base url: <code>https://darajambili.herokuapp.com</code></p>
+					<h2 id="apiendpoints">API Endpoints</h2>
 
-							<h2 id="apiendpoints">API Endpoints</h2>
-
-							<h4 id="c2bvalidation">C2B Validation</h4>
+					<h4 id="c2bvalidation">C2B Validation</h4>
 
 							<p>Path: <code>https://darajambili.herokuapp.com/c2b/validation</code></p>
 
-							<h4 id="c2bconfirmation">C2B Confirmation</h4>
+					<h4 id="c2bconfirmation">C2B Confirmation</h4>
 
 							<p>Path: <code>https://darajambili.herokuapp.com/c2b/confirmation</code></p>
 
-							<h4 id="mpesaexpresspaymentresult">MPESA Express Payment Result</h4>
+					<h4 id="mpesaexpresspaymentresult">MPESA Express Payment Result</h4>
 
 							<p>Path: <code>https://darajambili.herokuapp.com/express-payment</code></p>
 
-							<h4 id="b2bresult">B2B Result</h4>
+					<h4 id="b2bresult">B2B Result</h4>
 
 							<p>Path: <code>https://darajambili.herokuapp.com/b2b/result</code></p>
 
-							<h4 id="b2btimeout">B2B Timeout</h4>
+					<h4 id="b2btimeout">B2B Timeout</h4>
 
 							<p>Path: <code>https://darajambili.herokuapp.com/b2b/timeout</code></p>
 
-							<h4 id="b2cresult">B2C Result</h4>
+					<h4 id="b2cresult">B2C Result</h4>
 
 							<p>Path: <code>https://darajambili.herokuapp.com/b2c/result</code></p>
 
-							<h4 id="b2ctimeout">B2C Timeout</h4>
+					<h4 id="b2ctimeout">B2C Timeout</h4>
 
 							<p>Path: <code>https://darajambili.herokuapp.com/b2c/timeout</code></p>
 
-							<h4 id="accountbalanceresult">Account Balance Result</h4>
+					<h4 id="accountbalanceresult">Account Balance Result</h4>
 
 							<p>Path: <code>https://darajambili.herokuapp.com/account-balance/result</code></p>
 
-							<h4 id="accountbalancetimeout">Account Balance Timeout</h4>
+					<h4 id="accountbalancetimeout">Account Balance Timeout</h4>
 
 							<p>Path: <code>https://darajambili.herokuapp.com/account-balance/timeout</code></p>
 
-							<h4 id="transactionstatusresult">Transaction Status Result</h4>
+					<h4 id="transactionstatusresult">Transaction Status Result</h4>
 
 							<p>Path: <code>https://darajambili.herokuapp.com/transaction-status/result</code></p>
 
-							<h4 id="transactionstatustimeout">Transaction Status Timeout</h4>
+					<h4 id="transactionstatustimeout">Transaction Status Timeout</h4>
 
 							<p>Path: <code>https://darajambili.herokuapp.com/transaction-status/timeout</code></p>
 
-							<h4 id="reversalresult">Reversal Result</h4>
+					<h4 id="reversalresult">Reversal Result</h4>
 
 							<p>Path: <code>https://darajambili.herokuapp.com/reversal/result</code></p>
 
-							<h4 id="reversaltimeout">Reversal Timeout</h4>
+					<h4 id="reversaltimeout">Reversal Timeout</h4>
 
 							<p>Path: <code>https://darajambili.herokuapp.com/reversal/timeout</code></p>
 
-							<h2 id="logsendpoints">Logs</h2>
+					<h2 id="logsendpoints">Logs</h2>
 
 
-							<div style="margin-bottom: 50px;">
+					<div style="margin-bottom: 50px;">
 
-								<p>
-									<a target="_blank" class="btn btn-primary btn-sm" href="{% url 'view_logs' %}" title="View Logs">View Logs</a>
+						<p>
+							<a target="_blank" class="btn btn-primary btn-sm" href="{% url 'view_logs' %}"
+								title="View Logs">View Logs</a>
 
-									<!-- <a class="button danger" href="{% url 'clear_logs' %}" title="Clear Logs">Clear logs</a> -->
-								</p>
+							<!-- <a class="button danger" href="{% url 'clear_logs' %}" title="Clear Logs">Clear logs</a> -->
+						</p>
 
-							</div>
-
-							</div>
-						</div>
-
-						<!-- Second tab -->
-						<div class="tab-pane fade" id="tab2">
-							<div class="card" style="margin-top: 10px;">
-								<div class="card-header">
-									<span>Daraja logs</span>
-									<span class="float-right">
-										<a target="_blank" class="btn btn-primary btn-sm" href="{% url 'view_logs' %}" title="View Logs as JSON">View as JSON</a>
-									</span>
-								</div>
-								<div class="card-body">
-									<table class="table table-striped table-responsive table-sm">
-										<thead>
-											<tr>
-												<th>Time</th>
-												<th>Title</th>
-												<th>Content</th>
-											</tr>
-										</thead>
-										<tbody>
-											{% for log in logs %}
-											<tr>
-												<td>{{ log.date_created }}</td>
-												<td>{{ log.title }}</td>
-												<td>{{ log.description }}</td>
-											</tr>
-											{% endfor %}
-										</tbody>
-									</table>
-								</div>
-							</div>
-						</div>
 					</div>
 
-
 				</div>
-
-
-
-
 			</div>
 
+			
+		</div>
+
+
+	</div>
+
+
+
+
+</div>
 
 
 
 
 
 
-			{% endblock %}
+
+{% endblock %}
